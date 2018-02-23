@@ -73,3 +73,21 @@ to list git settings
 git config -- list
 
 ----------------------------------------------------------------------------------
+
+NOTE :- By default, Git pushes only to matching branches: For every branch that exists on the local side, the remote side is updated if a branch with the same name already exists there.
+
+----------------------------------------------------------------------------------
+
+Git init command creates .git directory to store metadata about the repository every time it reads the configuration from the .git/config file.
+
+Syntax to push to a certain branch git push <remote> <branch>
+
+
+git log command displays the history.
+
+?? :- Unstaged on untracked file
+A before the file means file is in the staging area
+
+-----------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------
