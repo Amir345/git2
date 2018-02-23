@@ -1,0 +1,435 @@
+Install Nagios on the machine
+
+Install Httpd and php and then start httpd service also make sure that it starts at the start up
+
+# yum install httpd php -y
+#systemctl start httpd
+#chkconfig httpd on
+
+
+Install Required Packages In The Monitoring Server
+Install Nagios Core, Nagios Plugins And NRPE (Nagios Remote Plugin Executor)
+
+#rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+
+then we have to download another repo
+
+#rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+
+Install Nagioscore, Nagios Plugins And NRPE (Nagios Remote Plugin Executor)
+
+# yum -y install nagios nagios-plugins-all nagios-plugins-nrpe nrpe
+
+# chkconfig nagios on
+
+#service nagios start
+
+Now, I will enable swap memory of at least 1GB. It’s time to create the swap file itself using the dd command:
+
+# dd if=/dev/zero of=/swap bs=1024 count=2097152
+
+once the swap space is created then create the swap partition and then Change the owner and permission on the swap
+
+# mkswap /swap
+#chown root. /swap 
+#chmod 0600 /swap
+
+to activate the swap space
+swapon /swap
+
+
+This file will last on the virtual private server until the machine reboots. You can ensure that the swap is permanent by adding it to the fstab file.
+
+#echo /swap swap swap defaults 0 0 >> /etc/fstab
+
+In order to check swappiness
+
+#cat /proc/sys/vm/swappiness
+
+A swappiness value of 0 means that the operating will only rely on swap when it absolutely needs to.
+
+We can adjust the swappiness with the sysctl command. To make your VPS automatically apply this setting every time it boots up, you can add the setting to the /etc/sysctl.conf
+
+#echo vm.swappiness = 0 >> /etc/sysctl.conf && sysctl -p
+
+Setting up password for Nagios admin
+
+# htpasswd -c /etc/nagios/passwd nagiosadmin
+
+once done open the nagios server
+
+http://<public_IP_address> or <hostname>/nagios------> from any other machine
+localhost/nagios---- from the same machine on which nagios is installed
+
+
+Install NRPE client on the host which are supposed to be monitored
+
+#rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+
+then we have to download another repo
+
+#rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+
+Now install Nagios, Nagios Plugins and NRPE in client
+
+#yum -y install nagios nagios-plugins-all nrpe
+
+enable the NRPE service
+
+#chkconfig nrpe on
+
+After this we have to configure the nrpe.cfg file and once done we have to add allowed host
+
+Here, allowed host is the IP address of the monitoring server
+
+Now, we need to setup firewall rules to allow connection between monitoring server and client. 
+
+#iptables -N NRPE
+
+-A option is used to append the new rule to the end of a chain. If you want to put it somewhere else in the chain, you can use the -I option which allows you to specify the position of the new rule.
+
+The below command accepts tcp requests on ports 5666.
+
+#iptables -I INPUT -s 0/0 -p tcp --dport 5666 -j NRPE
+#iptables -I NRPE -s 192.168.56.101 -j ACCEPT
+#iptables -A NRPE -s 0/0 -j DROP
+
+save these configurations:
+
+# /etc/init.d/iptables save
+
+#start NRPE service
+
+service nrpe start
+
+Now go back to the Monitoring server.
+
+Here, I need to edit nagios.cfg file.
+
+#vi /etc/nagios/nagios.cfg
+
+
+ Add to Bookmark  Email this Post  2.4K     0
+ 
+Nagios Tutorial:
+I believe there are very few posts on Nagios, and not much relevant information available over the internet. So, I think this post will give you a good clarity on this Monitoring tool. Nagios monitors your entire IT infrastructure to ensure systems, applications, services, and business processes are functioning properly. In this Nagios tutorial, I will be covering the below topics:
+
+Why We Need Continuous Monitoring?
+What Is Continuous Monitoring?
+What Is Nagios?
+How To Install Nagios?
+How To Add A Remote Server Using NRPE (Nagios Remote Plugin Executor).
+Let’s begin this Nagios tutorial, by understanding why we need Continuous Monitoring because everything exists for a reason. So, let’s try to find out that reason.
+
+Why We Need Continuous Monitoring?
+Continuous Monitoring Tools resolve any system errors ( low memory, unreachable server etc. ) before they have any negative impact on your business productivity. 
+
+Important reasons to use a monitoring tool are:
+
+It detects any network or server problems
+It determines the root cause of any issues
+It maintains the security and availability of the service
+It monitors and troubleshoot server performance issues
+It allows us to plan for infrastructure upgrades before outdated systems cause failures
+It can respond to issues at the first sign of a problem
+It can be used to automatically fix problems when they are detected
+It ensures IT infrastructure outages have a minimal effect on your organization’s bottom line
+It can monitor your entire infrastructure and business processes
+Yeah, it does a lot of cool work, but what is it?
+
+What is Continuous Monitoring?
+Let me first tell you where Continuous Monitoring lies in the DevOps life-cycle, consider the diagram below:
+
+DevOps Life-Cyce - Nagios Tutorial - Edureka
+
+Learn Nagios With DevOps Now
+
+Looking at the diagram you must be thinking this is the last stage in the DevOps lifecycle, but this is not the case. There is no end to a DevOps life cycle, and that is the reason for the infinity symbol. Continuous Monitoring comes into the picture, once the application is deployed on the production servers.
+
+Continuous Monitoring is all about the ability of an organization to detect, report, respond, contain and mitigate the attacks that occur, in its infrastructure.
+
+Continuous Monitoring is actually not new, it’s been around for some time. For years our security professionals are performing static analysis from – system log, firewall logs, IDS logs, IPS logs etc. But, it did not provide proper analysis and response. Today’s Continuous Monitoring approache gives us the ability to aggregate all of the events that I discussed above, co-relate them, compare them and then estimate the organization’s risk posture.
+
+If we take all these pieces and ensure the interlinking between them. This is the crux of Continuous Monitoring.
+
+Let me explain this with a use-case. Consider the diagram below:
+
+ 
+
+Continuous Monitoring - Nagios Tutorial - EdurekaNow, let me explain you the above diagram:
+
+We have various security tools, like Firewall, IDS, End Point Protection etc. they are connected with a ‘Security Information and Event Management system.
+In order to achieve Continuous Monitoring, we need to have all the parts talking to each other, let me explain that to you.
+So we have security tools and series of ‘End Points’,  this can include client and servers, routers, switches, mobile devices and so on.
+These two groups can then talk to a Security Information and Event Management system (SIEM), through a common language and in more automated fashion.
+Connected to this SIEM there are two important components, first one is a Data Warehouse. Now to this Data Warehouse, we will connect ‘Analytics’ and ‘Security Intelligence’.
+Security intelligence (SI) is the information relevant to protecting an organization from external and insider threats as well as the processes, policies and tools designed to gather and analyze that information.
+This SIEM is also connected to a ‘Governance Risk and Compliance System’ it basically provides dashboarding. 
+To this ‘Governance Risk and Compliance System’  we attach a risk database. This gives us ‘Actionable Intelligence’. 
+Actionable Intelligence is nothing but information that can be acted upon, with the further implication that actions should be taken.
+So here, we are Monitoring the events on the on going basis and determining what level of risk we are experiencing. With this, we can correlate the events at the SIEM. We can perform Network Behavior and Anomaly Detection at the ‘Analytics Engine’. This is what Continuous Monitoring is all about:
+
+The integration of an organization security tools, the aggregation, normalization and correlation of the data that is produced by the security tools. The analysis of that data, based on the organization’s risk goals and threat knowledge, and near real-time response to the risks identified.
+
+‘If you can’t measure it you can’t manage it’. I hope you know what I am talking about.
+
+Next up in this Nagios tutorial, I will be introducing you to one of the most famous monitoring tool ‘Nagios’.
+
+What is Nagios?
+Nagios is used for Continuous monitoring of systems, applications, services, and business processes etc in a DevOps culture. In the event of a failure, Nagios can alert technical staff of the problem, allowing them to begin remediation processes before outages affect business processes, end-users, or customers. With Nagios, you don’t have to explain why an unseen infrastructure outage affect your organization’s bottom line.
+
+Let me explain to you how Nagios works. Consider the diagram below:
+
+Nagios Working - Nagios Tutorial - EdurekaNagios runs on a server, usually as a daemon or a service.
+
+It periodically runs plugins residing on the same server, they contact hosts or servers on your network or on the internet. One can view the status information using the web interface. You can also receive email or SMS notifications if something happens.
+The Nagios daemon behaves like a scheduler that runs certain scripts at certain moments. It stores the results of those scripts and will run other scripts if these results change.
+
+Plugins: These are compiled executables or scripts (Perl scripts, shell scripts, etc.) that can be run from a command line to check the status or a host or service. Nagios uses the results from the plugins to determine the current status of the hosts and services on your network.
+
+Let’s now discuss it’s architecture.
+
+Nagios Architecture:
+Nagios is built on a server/agents architecture.
+Usually, on a network, a Nagios server is running on a host, and Plugins interact with local and all the remote hosts that need to be monitored.
+These plugins will send information to the Scheduler, which displays that in a GUI.
+Nagios Architecture - Nagios Tutorial - Edureka
+
+I also need to explain you NRPE (Nagios Remote Plugin Executor). 
+
+The NRPE addon is designed to allow you to execute Nagios plugins on remote Linux/Unix machines. The main reason for doing this is to allow Nagios to monitor “local” resources (like CPU load, memory usage, etc.) on remote machines. Since these public resources are not usually exposed to external machines, an agent like NRPE must be installed on the remote Linux/Unix machines.
+
+Consider the diagram below:
+
+ 
+
+NRPE Architecture - Nagios Tutorial - Edureka
+
+The check_nrpe plugin, resides on the local monitoring machine.
+The NRPE daemon, runs on the remote Linux/Unix machine.
+There is a SSL (Secure Socket Layer) connection between monitoring host and remote host as shown in the diagram above.
+Now in this Nagios tutorial, it is time for some Hands-on.
+
+Let’s start by installing Nagios Core
+
+Install Nagios Core:
+The complete process to install Nagios can be summarized in four steps:
+
+Install Required Packages In The Monitoring Server
+Install Nagios Core, Nagios Plugins And NRPE (Nagios Remote Plugin Executor)
+Set Nagios Password To Access The Web Interface
+Install NRPE In Client
+Step – 1: Install Required Packages On The Monitoring Server:
+Visit the website: http://dl.fedoraproject.org/pub/epel/6/
+
+Epel Repository - Nagios Tutorial - Edureka
+
+Click on i386, and then you will be redirected to a page.
+
+Epel Repository - Nagios Tutorial - Edureka
+
+Since I am using CentOS 6, so I will right click and copy the link location of ‘epel-release-6-8.noarch.rpm‘, as shown in the above screenshot.
+
+Open the terminal and use rpm -Uvh command and paste the link.
+
+Install EPEL Repository - Nagios Tutorial - Edureka
+
+We need to download one more repository, for that visit the website ‘http://rpms.famillecollet.com/enterprise/‘
+
+Nagios Package - Nagios Tutorial - Edureka
+
+Right-click and copy the link location for ‘remi-release-6.rpm‘
+
+Again open the terminal and use rpm -Uvh command and paste the link.
+
+Install Packages - Nagios Tutorial -Edureka
+
+Fine, so we are done with the pre-requisites. Let’s proceed to the next step.
+
+Step – 2: Install Nagios Core, Nagios Plugins And NRPE (Nagios Remote Plugin Executor):
+Execute the below command in the terminal:
+
+yum -y install nagios nagios-plugins-all nagios-plugins-nrpe nrpe httpd php
+This will install Nagios, Nagios Plugins, Plugins for NRPE, NRPE, Apache and PHP
+
+Apache web server is required to monitor the current web server status.
+
+Php is used to process dynamic content of the site date.
+
+Install Nagios Plugins NRPE Apache Php - Nagios Core - Edureka
+
+Next, we need to enable Apache and Nagios service:
+
+chkconfig httpd on && chkconfig nagios on
+Start Nagios And Apache Service - Nagios Tutoria - Edureka
+
+Our next step is to start Nagios and Apache:
+
+service httpd start && service nagios start
+Start Nagios And Apache - Nagios Tutoria - Edureka
+
+Now, I will enable swap memory of at least 1GB. It’s time to create the swap file itself using the dd command:
+
+dd if=/dev/zero of=/swap bs=1024 count=2097152
+Enable Swap Memory - Nagios Tutorial - EdurekaSwap is basically used to free some, not so frequently accessed information from RAM, and move it to a specific partition on our hard drive.
+
+Now that you have created the swap partition, use the command mkswap to setup the swap partition. This is going to prepare the swap file by creating a linux swap area.
+
+mkswap /swap
+To prevent the file from being world-readable, you should set up the correct permissions on the swap file:
+
+chown root. /swap 
+chmod 0600 /swap
+If you see no errors, your swap space is ready to use. To activate it immediately, type:
+
+swapon /swap
+Make Swap - Nagios Tutorial - Edureka
+
+This file will last on the virtual private server until the machine reboots. You can ensure that the swap is permanent by adding it to the fstab file.
+
+echo /swap swap swap defaults 0 0 >> /etc/fstab
+Edit Fstab File - Nagios Tutorial - Edureka
+
+The operating system kernel can adjust how often it relies on swap through a configuration parameter known as swappiness.
+
+To find the current swappiness settings, type:
+
+cat /proc/sys/vm/swappiness
+Swapiness can be a value from 0 to 100. Swappiness near 100 means that the operating system will swap often and usually, too soon. Although swap provides extra resources, RAM is much faster than swap space. Anytime something is moved from RAM to swap, it slows down.
+
+A swappiness value of 0 means that the operating will only rely on swap when it absolutely needs to. We can adjust the swappiness with the sysctl command. To make your VPS automatically apply this setting every time it boots up, you can add the setting to the /etc/sysctl.conf file:
+
+echo vm.swappiness = 0 >> /etc/sysctl.conf && sysctl -p
+Edit Sysctl.conf - Nagios Tutorial - Edureka
+
+Finally, we are done with the second step.
+
+Let’s proceed further and set Nagios password to access the web interface.
+
+Step – 3: Set Nagios Password To Access The Web Interface:
+Set the password to access the web interface, use the below command:
+
+htpasswd -c /etc/nagios/passwd nagiosadmin
+Nagios Credentials -Nagios Tutorial - Edureka
+
+Type the password and confirm it by retyping it.
+
+Now, open the browser. Here, type your public IP or hostname/nagios. Consider the example below:
+
+Nagios Password - Nagios Tutorial - Edureka
+
+Here, give the user name and password. By default, the user name is nagiosadmin, and password is what you have set in the previous step. Finally, press OK.
+
+After this, you will directed to Nagios Core dashboard.
+
+Nagios Core Dashboard - Nagios Tutorial - Edureka
+
+You can click on hosts and see the what all hosts your Nagios Core is currently monitoring.
+
+Nagios Hosts - Nagios Tutorial - Edureka
+
+You can notice it is only monitoring one host, i.e. localhost. If I want my Nagios Core to monitor a remote host, I need to install NRPE in that remote host. This brings us to the next step, install NRPE In client/machine that you want Nagios to monitor.
+
+Step – 4: Install NRPE In Client:
+Alrighty then, let’s install NRPE in the client machine.
+
+Firstly, you need to install the required packages like I did on my Nagios server machine. So, just execute the same commands, consider the below screenshots:
+
+Nagios Packages - Nagios Tutorial - Edureka
+
+Nagios Packages - Nagios Tutorial - Edureka
+
+Now install Nagios, Nagios Plugins and NRPE in client:
+
+yum -y install nagios nagios-plugins-all nrpe
+Install Nagios, Nagios Plugins, NRPE - Nagios Tutorial - Edureka
+
+Once it is installed, enable the NRPE service:
+
+chkconfig nrpe on
+Enable The NRPE Service - Nagios Tutorial - Edureka
+Our next step is to edit the, nrpe.cfg file. I will be using the vi editor, you can choose any other editor also:
+
+Edit nrpe.cfg File - Nagios Tutorial - Edureka
+
+You need to add the IP address of your monitoring server, in the allowed host line, consider the below screenshot:
+
+Allowed Host - Nagios Tutorial - Edureka
+
+Here, the IP address of my monitoring server is 192.168.56.101.
+
+Now, we need to setup firewall rules to allow connection between monitoring server and client. 
+
+iptables -N NRPE
+-A option is used to append the new rule to the end of a chain. If you want to put it somewhere else in the chain, you can use the -I option which allows you to specify the position of the new rule.
+
+The below command accepts tcp requests on ports 5666.
+
+iptables -I INPUT -s 0/0 -p tcp --dport 5666 -j NRPE
+iptables -I NRPE -s 192.168.56.101 -j ACCEPT
+iptables -A NRPE -s 0/0 -j DROP
+This will basically configure iptables to accept packets from a particular host, in my case – 192.168.56.101, and drops the packets from other hosts.
+
+Now, I will save these configurations:
+
+/etc/init.d/iptables save
+Save iptables Configurations - Nagios Tutorial - Edureka
+
+Start NRPE service now.
+
+service nrpe start
+Start Nrpe - Nagios Tutorial - Edureka
+
+Now go back to the Monitoring server.
+
+Here, I need to edit nagios.cfg file.
+
+vi /etc/nagios/nagios.cfg
+Edit Nagios.cfg File
+
+Uncomment the the line – cfg_dir = etc/nagios/servers
+
+Make ‘server’ directory,
+
+#mkdir /etc/nagios/servers/
+
+Change your working directory to servers.
+
+#cd /etc/nagios/servers
+
+Create a new file in this directory with .cfg extension and edit it. I will name it as client.cfg, and I will be using vi editor.
+
+#vi /etc/nagios/servers/client.cfg
+
+define host {
+	use		linux-server
+	host_name	webserver1
+	address		10.42.42.110
+	}
+define service {
+	use		linux-server
+	host_name	webserver1
+	address		10.42.42.110	
+	service_description	SSH
+	check_command	check_ssh
+	}
+
+set the folder permissions correctly and restart Nagios.
+
+# chown -R nagios. /etc/nagios/
+
+and then restart nagios
+
+
+
+
+
+
+
+
+
+
+
+
+
+

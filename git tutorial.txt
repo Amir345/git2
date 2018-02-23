@@ -1,0 +1,163 @@
+GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+
+A repository is usually used to organize a single project. Repositories can contain folders and files, images, videos, spreadsheets, and data sets – anything your project needs. We recommend including a README, or a file with information about your project. GitHub makes it easy to add one at the same time you create your new repository. 
+
+To create a new repository
+In the upper right corner, next to your avatar or identicon, click  and then select New repository.
+Name your repository hello-world.
+Write a short description.
+Select Initialize this repository with a README.
+
+**********************************************************************************
+
+Create a Branch
+
+Branching is the way to work on different versions of a repository at one time.
+
+By default your repository has one branch named master which is considered to be the definitive branch. We use branches to experiment and make edits before committing them to master
+
+When you create a branch off the master branch, you’re making a copy, or snapshot, of master as it was at that point in time. If someone else made changes to the master branch while you were working on your branch, you could pull in those updates.
+
+Workflow in github
+
+Create a branch ---> commit changes to that branch --> then submit pull request --> discuss those changes ---> Merge into master
+
+Here at GitHub, our developers, writers, and designers use branches for keeping bug fixes and feature work separate from our master (production) branch. When a change is ready, they merge their branch into master.
+
+
+*********************************************************************************
+Make and commit changes
+
+On GitHub, saved changes are called commits. Each commit has an associated commit message, which is a description explaining why a particular change was made. Commit messages capture the history of your changes, so other contributors can understand what you’ve done and why.
+
+Edit the code in the branches that you are working on and then once you have made those changes, submit those changes these are know as commits
+
+Once you have committed those changes start a pull request these changes can be for a bug fix
+
+*********************************************************************************
+Open a Pull Request
+
+Pull Requests are the heart of collaboration on GitHub. When you open a pull request, you’re proposing your changes and requesting that someone review and pull in your contribution and merge them into their branch. Pull requests show diffs, or differences, of the content from both branches. The changes, additions, and subtractions are shown in green and red.
+
+You can even open pull requests in your own repository and merge them yourself. It’s a great way to learn the GitHub Flow before working on larger projects.
+
+
+********************************************************************************
+
+Merge your Pull Request
+
+In this final step, it’s time to bring your changes together – merging your readme-edits branch into the master branch.
+
+Click the green Merge pull request button to merge the changes into master.
+Click Confirm merge.
+Go ahead and delete the branch, since its changes have been incorporated, with the Delete branch button in the purple box.
+
+
+*******************************************************************************
+
+Initializing a Repository (Using Git CLI)
+
+Open up your terminal, and in your project directory run the command (git init)
+
+Note :- This should initialize a local repository on the machine which you are working on
+
+Once you initialize a repository A new hidden directory called .git will now be present in your project directory. This is where Git stores its database and configuration information, so that it can track your project.
+
+********************************************************************************
+
+Cloning a Repository
+
+There is another way of cloning a repo that is through cloning
+
+running git clone <repository URL> will pull in a complete copy of the remote repository to your local system. Now you can work away on it, making changes, staging them, committing them, and pushing the changes back.
+
+
+********************************************************************************
+
+Adding a New File
+
+Add a new file to the local repository and run the command 
+
+git status :- that will give you the list of the file that are untracked
+
+before committing you have to stage that file and that need to be done by the following command
+
+git add :- this would stage the file to be ready for committed
+
+Now once the file is in the staging area it is ready to be committed
+
+
+If you want to bring the file from staging area to the unstaged area 
+
+git reset HEAD <filename>
+
+Now before committing the file you might have to configur few settings that git would use
+
+to set default editor git would use for writing commit messages
+
+
+git config --global core.editor <your editor app's name>
+
+git config --global user.email "you@example.com"
+ git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+*******************************************************************************
+
+git status to check the status of the repository
+
+
+********************************************************************************
+
+Seeing Differences
+
+git diff will show you the differences but by default without any arguments it would show the difference in between the unstaged changes
+
+
+If you want to see staged changes, then run git diff --cached
+
+so basically whatever changes are going to be committed
+
+Before each line you see a plus sign, which indicates an addition. So all of those lines are being added to the file. If we’d removed any content, it would be preceded by a minus. 
+
+git diff will show the changes in the most recent unstaged version
+
+git diff --cached will show the changes in the most recent and staged version
+
+*******************************************************************************
+
+Viewing Change History
+
+
+Now what if you wanted to see your repository or file history over time? To do that, you need to use git log. Just running git log in your project repository will show you a list of changes in reverse chronological order. With no further arguments, you’ll see the commit hash, the author name and email, a timestamp for the commit, and the commit message.
+
+ if you just want to view the commit hash and the commit message? To do that, you pass the --oneline switch to git log, like this: git log --oneline
+
+
+********************************************************************************
+
+Branches
+
+Now we’ll create the development branch. From your terminal, run git checkout -b develop to create a new branch called develop. Running this command will both create and check out the new branch, which at first is simply a copy of the master branch
+
+in order to merge branch
+
+you’re ready to merge them to the master branch. First, you need to check out the branch you want to merge. To do that, run git checkout master. Then you need to merge the changes to the current branch from the branch you’ve worked on. To do that, run git merge develop.
+
+
+**********************************************************************************
+
+
+in order to switch branches we have to use
+
+git checkout
+
+Now in order to push changes to git hub from the command line
+
+git remote add origin <URL for github>
+git push -f origin master (force push)
+git remote -v to setup remote
+
+
