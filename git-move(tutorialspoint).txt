@@ -12,3 +12,10 @@ In case of error
 
 git fetch
 git merge --allow-unrelated-histories
+
+mv command also renames the file
+
+Note :- used -a flag, that makes git commit automatically detect the modified files.
+
+example :-  git commit -a -m 'Added Makefile and renamed strings.c to
+string_operations.c '
