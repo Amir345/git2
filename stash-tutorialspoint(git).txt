@@ -1,0 +1,9 @@
+Stashing is useful where in you are working on something and you want to keep aside your day work without committing them and work on something else
+
+you run the command git stash, this will save your work without commiting them and once done you can always get the work back with the command 
+
+git stash pop
+
+In Git, the stash operation takes your modified tracked files, stages changes, and saves them on a stack of unfinished changes that you can reapply at any time.
+
+You can also view a list of stashed changes by using the git stash list command.
