@@ -88,6 +88,17 @@ git log command displays the history.
 ?? :- Unstaged on untracked file
 A before the file means file is in the staging area
 
------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------git show "commitSHA" :- gives a brief history of what was done in the commit
+
+reviews his changes by running the git diff command returns the review of the unstaged versions of the file
+
+----------------------------------------------------------------------------------
+
+in order to amend the commit just modify/change rge file add the file again to the staging area and while commiting the file with the previous commit use the --amend flag
+
+
+NOTE :- you should not have pushed the previous commitif you want to amend the same commit
+----------------------------------------------------------------------------------
+
 
 ----------------------------------------------------------------------------------
