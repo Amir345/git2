@@ -99,6 +99,28 @@ in order to amend the commit just modify/change rge file add the file again to t
 
 NOTE :- you should not have pushed the previous commitif you want to amend the same commit
 ----------------------------------------------------------------------------------
+Assume that the first user is also working on the file and he is not aware of the changes that is done by the other team mate and he updates something on the file
+
+Now while pushing the file on the remote server git would throw the error message because the local repo history is not in sync with the remote repo hence the user has to do a git pull
+
+
+Note :- error message looks like this
+
+To https://github.com/Amir345/git2.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/Amir345/git2.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+
+and then check what was changed using git log and git show 
+
+after completely checking it one should push the message to the repo
+
+Note :- git diff origin/master will show the difference in between the file at the remote and currently at the local machine
 
 
 ----------------------------------------------------------------------------------
