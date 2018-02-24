@@ -1,0 +1,14 @@
+In order to move a file we have to use the mv comand
+
+once the file is moved we don't have to do git add as folder which is created is already in the staging area 
+
+In order to make changes we just have to commit our changes and push it to the remote server
+
+Note :- if multiple users are working in the same branch they will not see the modified directory structure as thier local repo branch history is not in sync with the remote branch
+
+hence as usual they have to do a git pull
+
+In case of error
+
+git fetch
+git merge --allow-unrelated-histories
