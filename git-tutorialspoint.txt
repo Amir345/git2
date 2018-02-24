@@ -97,7 +97,7 @@ reviews his changes by running the git diff command returns the review of the un
 in order to amend the commit just modify/change rge file add the file again to the staging area and while commiting the file with the previous commit use the --amend flag
 
 
-NOTE :- you should not have pushed the previous commitif you want to amend the same commit
+NOTE :- you should not have pushed the previous commit if you want to amend the same commit
 ----------------------------------------------------------------------------------
 Assume that the first user is also working on the file and he is not aware of the changes that is done by the other team mate and he updates something on the file
 
@@ -122,5 +122,14 @@ after completely checking it one should push the message to the repo
 
 Note :- git diff origin/master will show the difference in between the file at the remote and currently at the local machine
 
+Assuming a situation that you are working in collaboration with many team members within the same branch
+
+Once you pushed a file to the remote repo someone from the team started working on the branch and started updating the same file that you pushed
+
+he clones the branch and then he should navigate to that directory and run git log command to check about the history of commit
+
+Once he check he should check the last commit and find what was changed for this he can use git show command to know what was changed
+
+Let's say he finds a bug and wants to update the same file which he will do by simply editing the file, testing it and committing it back to the same branch
 
 ----------------------------------------------------------------------------------
