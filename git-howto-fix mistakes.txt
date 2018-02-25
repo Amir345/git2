@@ -1,0 +1,64 @@
+In git we can rollback changes that we made that is the whole purpose of using a VCS
+
+In git in order to roll back changes we use different commands
+
+if we have made changes to the local repo and the chnages are not on the staging area nor committed we can use git checkout command to rollback the changes
+
+git checkout <filename> undo the last action
+
+even if the file is deleted git checkout <filename> we can get the file
+
+This is only applicable when the changes are made and the file is not staged
+
+----------------------------------------------------------------------------------
+
+In case the file is staged we can use git checkout and git reset command
+
+In order to remove the file from the staging area we type
+
+git reset HEAD <filename>
+
+git checkout HEAD -- filename
+
+reset is of three types by default it used mixed one
+
+hard, soft, and mixed
+
+Each branch has a HEAD pointer, which points to the latest commit. If we use Git reset command with --soft option followed by commit ID, then it will reset the HEAD pointer only without destroying anything.
+
+.git/refs/heads/master file stores the commit ID of the HEAD pointer.
+
+----------------------------------------------------------------------------------
+
+Git reset with --mixed option reverts those changes from the staging area that have not been committed yet. It reverts the changes from the staging area only. The actual changes made to the working copy of the file are unaffected. The default Git reset is equivalent to the git reset -- mixed.
+
+----------------------------------------------------------------------------------
+
+git reset --soft HEAD~ moves the Head pointer back by one position
+
+Head pointer always points to the latest commit
+
+doing a soft reset does not destroys the history
+
+----------------------------------------------------------------------------------
+
+If you use --hard option with the Git reset command, it will clear the staging area; it will reset the HEAD pointer to the latest commit of the specific commit ID and delete the local file changes too.
+
+So essentially what that means is
+
+Whatever you have in the staging area would be cleared, and if you have any changes that you made to the file but will be deleted too.
+
+git reset --hard <commitSHA>
+
+basically restoring it to point in time to the commitSHA
+
+----------------------------------------------------------------------------------
+
+git revert is also used to do undo changes, if you pushed any changes to the remote repo and you want to undo that just 
+
+git revert <commitSHA>
+
+and then push the file again
+
+What git revert does is basically does matter to antimatter + to - so if the files were deleted in the commit it will add it and if the files were added in the commit it will delete it.
+
