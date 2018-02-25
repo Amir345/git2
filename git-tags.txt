@@ -1,0 +1,21 @@
+git tags helps you to give meaningful names to the specific version in the repo
+
+this is done through git tag command
+
+In order to tag any project we have to use the below syntax
+
+git tag -a "tag name" -m "tag message" <commit id or HEAD>
+
+In order to push a tag we have to use the below syntax
+
+git push origin tag "tag name"
+
+In order to list the tags created we can do so by 
+
+git tag -l
+
+Git show command followed by its tag name to view more details about tag.
+
+in order to delete a tag we have to use
+
+git tag -d "name of tag"
