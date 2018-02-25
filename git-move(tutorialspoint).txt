@@ -18,4 +18,11 @@ mv command also renames the file
 Note :- used -a flag, that makes git commit automatically detect the modified files.
 
 example :-  git commit -a -m 'Added Makefile and renamed strings.c to
-string_operations.c '
+string_operations.c 
+
+
+----------------------------------------------------------------------------------
+
+rm command is used to delete the file and then you can stage and push that to the remote server
+
+----------------------------------------------------------------------------------
