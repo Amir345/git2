@@ -1,0 +1,18 @@
+difference between git pull is that it pulls all the changed files in the master 
+
+where in git fetch saves it somewhere else other than your current working directory
+
+so in order to add those changes you have to merge those with the master
+
+git pull = git fetch+git merge
+
+
+imp :- when we commit using git commit -a -m we don't have to explicitally add the file to the staging area for tracked version of file
+
+in order to merge changes you should checkout to the branch where in you want to merge and then do a git merge
+
+In order to revert the changes that you have committed but not pushed 
+
+we can do that through the below command
+
+git checkout <8digits of SHA commit> <name of the file>

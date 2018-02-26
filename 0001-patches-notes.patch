@@ -1,0 +1,42 @@
+From e8bf1e4c257f2f34ed6019f87977e68562c38804 Mon Sep 17 00:00:00 2001
+From: Amir345 <er.amirkhan.kit@gmail.com>
+Date: Sun, 25 Feb 2018 10:17:38 +0530
+Subject: [PATCH] patches-notes
+
+---
+ git-ptaches.txt | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+ create mode 100644 git-ptaches.txt
+
+diff --git a/git-ptaches.txt b/git-ptaches.txt
+new file mode 100644
+index 0000000..32c05e6
+--- /dev/null
++++ b/git-ptaches.txt
+@@ -0,0 +1,23 @@
++Patch is a text file, whose contents are similar to Git diff, but along with code, it also has metadata about commits; e.g., commit ID, date, commit message, etc. We can create a patch from commits and other people can apply them to their repository.
++
++One can create a patch and then send that patch to other users and these users can apply the patch on their local repo 
++
++To create a patch git format-patch for the latest commit
++
++you can also specify a commit id if you want to create a patch for that commit.
++
++The above command creates .patch files inside the current working directory. 
++
++now this patch can be send over to other user to apply the patch 
++
++patches can be applied through two commands
++
++git am git apply
++
++git aplly :- applies the patch to the local repo without creating a commit
++
++git am :- applies the patch and creates the commit at the same time
++
++
++
++
+-- 
+2.16.2.windows.1
+

@@ -1,0 +1,143 @@
+git init :- turns a directory into an empty git repository
+
+git --version :- shows the version of git
+
+
+git add :- git does not track all the files, when we do a commit git only commit those files which are added in the staging area
+
+git add all the files to the staging area
+
+git add <filename>
+
+in order to add all the files to the staging area you can do the following
+
+git add *
+git add .
+git add -A
+
+
+git commit :- records the changes made to the files in the local repo
+
+once you commit allthe files a sha-1 # is generated for that commit
+
+-m flag is used to supply the commit message
+
+-a flag will add all the files from the staging area to commit
+
+each commit will have a uniques SHA
+
+git status :- return the current state of the repo
+
+returns the status of the current working branch
+
+also gives the information about untracked files, staged files
+
+git config :- configure settings for git
+
+ex :- username, user-email, choosing editor, 
+if we yse --global flag the changes are applied globally
+
+without this flag it runs on the current repo
+
+------------------------------------------------------
+git branch will tell you how many branches are there in total
+
+in order to create a branch 
+
+git branch (name of the branch)
+
+In order to switch to that branc
+
+git checkout <name of the branch>
+
+In order to push the branches change to the remote repo
+
+git push origin <name of the branch> :- this would create the branch if it is not present in the remote repo
+
+in order to delete a branch
+
+git branch -d (name of the branch) :- this will delete the branch locally
+
+In order to remove it from the remote
+
+git push -d origin (name of the brannch)
+
+In order to remove a tag from the remote branch
+
+git push --delete origin (name of your tag)
+
+In order to merge the branch
+
+first we have to checkout to the branch where we want to merge
+
+and then run git merge (name of the branch which we want to merge)
+
+git merge --abort will abort the merge that we are trying to do
+
+git merge (name of the branch where we want to merge) (name of the branch that we want to merge)
+
+git branch:- will list the current branches
+
+git checkout -b <name of the branch>:- shortcut to create a branch and check into that branch
+
+------------------------------------------------------
+
+git remote add origin <URL For github> :- connect a local repo to the remote repo
+
+------------------------------------------------------
+
+git clone <URL of the remote repo> :- create a local working repo of an existing remote repo
+
+------------------------------------------------------
+
+in order to pull the changes from a remote repo
+
+git pull origin <name of the branch> 
+
+In case there is any changes to the branch which is not there in the local it would be merged with the branch
+
+else if we are pulling it from the master it will simply download the changes
+
+------------------------------------------------------
+
+In order to push the changes to the remote repo
+
+We have to first add the files to the staging area, commit the changes and then 
+
+git push origin <name of the branch>
+
+------------------------------------------------------
+
+To save changes when you are not in a state to commit them we use git stash
+
+in order to get the files back that were saved in git stash
+
+git stash pop , or git stash apply
+
+------------------------------------------------------
+in order to check the history of commits we use
+
+git log command
+
+we can also pass parameters to the git log command
+
+git log --before="date"
+git log --author="nameofauthor"
+git log --oneline
+
+------------------------------------------------------
+
+in order to go back to previous commit
+
+git revert <commit sHA>
+
+------------------------------------------------------
+
+rebasing is also a way of combining different branches
+
+it will take a series of commit copy them and store them outside your repo
+
+The Git rebase command tries to find out the common ancestor between the current local branch and the merge branch. It then pushes the commits to the local branch by modifying the order of commits in the current local branch. For example, if your local branch has commits A->B->C->D and the merge branch has commits A->B->X->Y, then Git rebase will convert the current local branch to something like A->B->X->Y->C->D.
+
+
+
