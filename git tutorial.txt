@@ -160,4 +160,8 @@ git remote add origin <URL for github>
 git push -f origin master (force push)
 git remote -v to setup remote
 
+Note :- In case you want to add all the untracked files in the staging area we have to use a flag -A 
+
+and in order to commit al the files in one go we have to use the flag -a
+
 
