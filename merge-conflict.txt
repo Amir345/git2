@@ -1,0 +1,35 @@
+Merging conflicts
+
+central repo workflow
+
+Whenever multiple collaborators are working on a centralized repo then while pushing a change if someone already changed the same file it would result in conflict
+
+In order to resolve the conflict we can directly pull in the changes but that would overwrite what we made
+
+So we use pull with rebase
+
+what essentially rebase does it will always have the commit from the central repo and add up your local commit on top of that
+
+git pull --rebase origin master
+
+Once done it will show the file which has the conflict
+
+In case you don't see the conflicting file just type git status
+
+In order to solve the conflict we have to use 
+
+git mergetool
+
+and once conflict is sorted out
+
+git rebase --continue
+
+------------------------------------------------------
+
+feature branch workflow
+
+In this workflow every feature would be done on a separate branch and once you have done that you can initiate a pull request so that reviewers can review and after discussion you can merge it with the master branch
+
+------------------------------------------------------
+
+

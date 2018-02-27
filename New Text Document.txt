@@ -1,5 +1,0 @@
-sdsafasfa
-<<<<<<< HEAD
-asdasdas
-
->>>>>>> commiting from git shell

@@ -1,0 +1,38 @@
+Installing Git on a linux machine
+
+First we need to install the software that Git depends on
+
+#sudo yum groupinstall "Development Tools" -y
+
+# sudo yum install gettext-devel openssl-devel perl-CPAN perl-devel zlib-devel
+
+ we are going to use wget command to download a specific version of Git.
+
+#sudo yum install wget -y
+
+#wget https://github.com/git/git/archive/v2.7.2.tar.gz -O git.tar.gz
+
+
+#tar -zxf git.tar.gz
+
+Now lets change the directory to Git.
+
+Use the command #cd git
+
+We are in the source folder we can begin the source build process. For that first type in the command:
+
+#make configure
+
+then run #./configure --prefix=/usr/local
+
+Now that the software is built and ready to run, the files can be copied to their final destinations. Use the command below:
+
+#sudo make install
+
+Create a key pair put the public key on git hub and add the private key in the ssh-agent
+
+This can be done by the below command
+
+To add SSH key to the SSH agent we will use
+
+ssh-add ~/.ssh/id_rsa

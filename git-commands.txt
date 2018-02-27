@@ -139,5 +139,25 @@ it will take a series of commit copy them and store them outside your repo
 
 The Git rebase command tries to find out the common ancestor between the current local branch and the merge branch. It then pushes the commits to the local branch by modifying the order of commits in the current local branch. For example, if your local branch has commits A->B->C->D and the merge branch has commits A->B->X->Y, then Git rebase will convert the current local branch to something like A->B->X->Y->C->D.
 
+------------------------------------------------------
+
+Archive your repository
+Use the following command-
+
+git archive master –format=zip  –output= ../name-of-file.zip
+
+------------------------------------------------------
+
+Bundle your repository
+It turns a repository into a single file.
+
+Use the following command-
+
+git bundle create ../repo.bundler master
+
+This pushes the master branch to a remote branch, only contained in a file instead of a repository.
+
+------------------------------------------------------
+
 
 

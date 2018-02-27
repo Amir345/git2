@@ -1,0 +1,76 @@
+Branches are used to create another line of development, we can use branching to fork off the development process in two direction
+
+you can start your branch by any commit or making an exact copy of your current branch
+
+git branch will tell you how many branches are there in total
+
+in order to create a branch 
+
+git branch (name of the branch)
+
+In order to switch to that branc
+
+git checkout <name of the branch>
+
+In order to push the branches change to the remote repo
+
+git push origin <name of the branch> :- this would create the branch if it is not present in the remote repo
+
+in order to delete a branch
+
+git branch -d (name of the branch) :- this will delete the branch locally
+
+In order to remove it from the remote
+
+git push -d origin (name of the brannch)
+
+In order to remove a tag from the remote branch
+
+git push --delete origin (name of your tag)
+
+In order to merge the branch
+
+first we have to checkout to the branch where we want to merge
+
+and then run git merge (name of the branch which we want to merge)
+
+git merge --abort will abort the merge that we are trying to do
+
+git merge (name of the branch where we want to merge) (name of the branch that we want to merge)
+
+git branch:- will list the current branches
+
+git checkout -b <name of the branch>:- shortcut to create a branch and check into that branch
+
+git branch -m <old branch name> <new branch name> :- m flag is used to rename a branch
+
+--------------------------------------------------------------------------------
+
+In case there is a user who is working on a branch and who wants to commit his changes other than the master branch
+
+git push origin (name of the branch)
+
+other collaborator can merge the changes with his own branch and push the changes to the master
+
+or he can create another branch pull the code from another branch and merge it with his master branch in the local repo and push it to the master to the central repo
+
+Note :- when merging you should always be checked out to the branch on which you are merging the changes
+
+
+or he can create another branch pull the code from another branch 
+
+do some modifications and then push the changes back to the same repo at the central server
+
+--------------------------------------------------------------------------------
+
+In a repo HEAD is a pointer which always points to the lates commit
+
+what essentially rebase does it will always have the commit from the central repo and add up your local commit on top of that
+
+git fetch clones all the files from the central repo but keeps it in a different branch which is differnet from your current working directory
+
+git pull == git fetch+git merge
+---------------------------------------------------------------------------------
+
+
+
