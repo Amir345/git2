@@ -1,0 +1,106 @@
+**********************Jenkins**********************************
+
+Jenkins is a Java application, since it is Java application it is platform independent
+
+Hence you can use it on multiple environments.
+
+It is used for continuous integration and continous delivery
+
+***************************************************************
+
+Continuos integration :- we have different developer working on a project, and they make multiple commit on the shared repo (git, bitbucket, svn)
+
+through the entire day there would be multiple commits and when we build the app and if there is a bug in that it would be difficult to troubleshoot and the build would fail
+
+we have to go through the entire source code to find the bug and resolve this
+
+Jenkins/CI resolves this problem
+
+as soon as any developer commit the code in the repo jenkins would pull this commit (including the previous code) and would create the build
+
+in case there is any problem with the build you would be notified about the failure hence you can go ahead and check that particular commit and would rollback
+
+*****************************************************************
+
+We can also integrate our unit test. performance test along with the build as a post build actions
+
+so as soon as the build is created it will trigger some test on the build and if the test fails you will be notified for the same
+
+******************************************************************
+
+
+how to download jenkins :- Download Jenkins war file - https://jenkins.io/
+
+Once you download that you can install that via the below command
+
+#java -jar jenkins.war
+
+and this would install a standalone application for jenkins on the machine and it can be access over the machine IP address or local host on port 8080 and it would store all the configuration in (.jenkins) folder
+
+In case you want to change the port # we have to go by the below command
+
+#Java -jar jenkins.war --httpPort=$port#
+
+Jenkins show it's cool dashboard using the Jetty web server
+
+However you can also use any other webserver that runs on Java framework such as Apache Tomcat
+
+In order to get it installed as an application on any webserver we have to simply place the .war file in the webapps folder and then run the startup.bat or startup.bash from the bin folder depending on the OS that you have.
+
+for bash scripts you might have to add the executable permissions
+
+chmod +x *.sh in the bin folder in the apache tomcat
+
+note:- startup script is to start the tomcat server and shutdown is used to close the tomcat server
+
+Pre-requisite
+
+tomcat version should be 5 or above
+In order to run tomcat server on the windows machine JAVA (Java 7 or above) should be installed on the machine, and the JAVA_HOME and JRE_HOME variable should be there as environmental variable
+
+Benefits of running jenkins in tomcat is that we can have all the applications at one server
+
+
+
+Now, point to remember when we install Jenkins via the above commands or process no jenkins user would be created nor any service would be created
+
+while installing it on an ubuntu box if we go through the below command
+
+wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt-get update
+sudo apt-get install jenkins
+
+There would be a home directory created /var/lib/jenkins which would contain all the configuration files in jenkins
+
+ and it also creates a user named as jenkins and service as jenkins
+******************************************************************
+
+
+How we can change the home directory of jenkins
+
+Basically home directory is a place where jenkins store all its files including configuration, information and configuration about plugins and nodes
+
+So in order to move it from the default location (.jenkins or /var/lib/jenkins) we have to do the below steps
+
+create a new folder where you want to move the home directory of jenkins
+
+copy all the previous data in this folder 
+
+and change the the environment variables (JENKINS_HOME)
+
+Windows can be done through control panel and for mac we have to export it through terminal
+
+for mac export=(path for environment variable)
+
+and after this restart jenkins
+
+which can be done localhost:8080/restart or by quitting the terminal and restarting the war file
+
+NOTE :- in mac exporting the environment variable is temp in order to do it for permanent you can go to .bash_profile and add the export line over there
+
+in case .bash_profile file is not there in the user's folder create one, generally this is a hidden file
+
+
+IMP :- You can also get system information through localhost:8080/systeminfo
+***************************************************************************
