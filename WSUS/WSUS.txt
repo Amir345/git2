@@ -1,0 +1,88 @@
+WSUS is used to provide updates to computers in your organisation.
+
+It allows you to download the updates from the microsoft servers and store them locally, this way rather than every computer contact microsoft servers for updates you can provide those updates through WSUS that are stores locally within the internal network
+
+You can also configure other WSUS servers to download updates from WSUS server, check your network topology while placing the WSUS servers
+
+You can also configure WSUS to determine which updates the computer should install so technically it determines how updates are installed in your organization. and it also optimizes the downloads of your updates
+
+In order to control how updates are installed in the organization you put computer in groups
+
+generally there are three groups (test,pilot,production)
+
+
+*********************************************************************************
+
+Software pre-requiste to install WSUS
+
+.net framework 2.0
+to store the data required to store the updates you need a database, for small installs of WSUS you can use the windows internal data-base in case it is large it can be used in conjunction with SQL server
+
+it also need mmc 3.0
+
+also to generate reports in case you need microsoft reports viewer redistributable 2008(this can be ignore or can be installed later on)
+
+You also need IIS 6.0 or greater, certain componenets are also required (ASP.net/Windows authentication/Dynamic content compression)
+
+ASP.net :- web application component
+Windows authentication :- allows client to be authenticated by WSUs when requesting updates
+Dynamic content compression :- reduce the size of webpages
+
+*********************************************************************************
+
+Hardware requirement
+
+system partition and WSUS partition should be on NTFS and WSUS partition should not be a compressed drive
+
+1 GB free on system partition, 2 GB on database and 30 GB for updates
+
+*********************************************************************************
+
+WSUS can  be installed directly from the internet or from the server manager. If server manager does not shows up you have to do a windows update
+
+also one should consider what kind of updates you need to dowload. windows updates provides updates for OS and other microsoft office products
+
+Note :- if you configure another wsus server to download updates from WSUS server. You can only retrieve the updates that WSUS has..
+
+
+**********************************************************************************
+
+While installing WSUS through server manager all the configuration is done
+
+also in large organization generall WSUS server that has internet connectivity will be on a DMZ network and the production WSUS server would be a replica of the WSUS server which is on the DMZ network
+
+you can also configure WSUS as an autonomous what this essentially means is that it will download the updates from other WSUS server but it would be determined by the local admins on that server whether to install it or not.
+
+**********************************************************************************
+
+In order to administer WSUS allows you to create groups, you can also integrate WSUS with group policy for better management
+
+
+you can create as many groups as you want and assign computer to these group and then you can decide what and how updates would be installed on which group
+
+there are technically two ways to achieve this
+
+Server-side targeting:- perform through the WSUS admin tool this process is manual and is not feasable on large networks
+
+Client side targeting :- client decides which group the computer will be assigned to and is usuallt done through GPO, using GPO you can setup the group membership in your domain
+
+*********************************************************************************
+
+In order to configure Server-side-targeting we have to edit the local gpo of the machine 
+
+Under computer configuration-->admin templates -->windows update--> specify how updates and then update the group policy
+
+what this eventually would do is update the computer agains the WSUS server
+
+Note :- wuauclt /resetauthorization /detect now this will foce the client to register to the WSUS server
+
+
+
+********************************************************************************
+
+
+
+
+
+
+
