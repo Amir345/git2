@@ -1,0 +1,12 @@
+continuous integration normally adds checks at various levels and at the same time it would be moving forward in the build-release pipeline
+
+checks like standard, syntax, automation testing and feedback loops are created
+
+these are stages, at every stage there would be a notification channel so at any stage fails or if test fails we notify developers
+
+i get to know where my code is in the pipeline and i exactly know when my code is going live.
+
+
+
+
+

@@ -91,7 +91,15 @@ and change the the environment variables (JENKINS_HOME)
 
 Windows can be done through control panel and for mac we have to export it through terminal
 
-for mac export=(path for environment variable)
+even after this if the home directory does not changes then navigate to the install folder of jenkins and then edit the jenkins.xml file
+
+stop the jenkins service 
+
+edit <env name="JENKINS_HOME" value="%BASE%"/> the value to as your desired location
+
+restart the jenkins service after copying the data over to the new place
+
+for mac export JEENKINS_HOME=(path for environment variable)
 
 and after this restart jenkins
 
@@ -104,3 +112,8 @@ in case .bash_profile file is not there in the user's folder create one, general
 
 IMP :- You can also get system information through localhost:8080/systeminfo
 ***************************************************************************
+
+Note :- If have faced trouble while adding git Repository URL in jenkins
+
+if it show's an alert "Failed to connect to repository "
+go to Manage Jenkins--> Global Tool Configuration --> Git -->Path to Git executable and give the path where git.exe is present/installed for me it was C:\Program Files (x86)\Git\bin\git.exe?

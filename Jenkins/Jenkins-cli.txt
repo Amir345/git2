@@ -1,0 +1,37 @@
+Jenkins CLI
+
+We use CLI as it is easier, faster and does not takes up more memory
+
+In order to use Jenkins CLI, make sure that enable security is checked under configure global security in manage jenkins
+
+You can navigate to cli by going through the below URL
+
+Jenkins URL\CLI
+
+Now we have to download Jenkins-cli.jar and then we can place it at any location
+
+Then navigate to the location where you have your jenkins-cli.jar
+
+Note :- you should have Java installed on the machine in order to use jenkins-cli.jar
+Also either add the user variable for the run time environment in the path section, by editing the path variable and providing a semicolon and providing the install location for the run time environment
+
+Which is generally "C:\Program Files (x86)\Java\jre1.8.0_131\bin"
+
+OR adding the system variable for the below environment
+
+the path generally is the install location for the JAVA JDK or JRE
+
+
+
+JAVA_HOME = "C:\Program Files\Java\jdk-9.0.4" :- JDK environmeny
+JRE_HOME = "C:\Program Files\Java\jre-9.0.4" :- JRE environment
+
+
+Once you run any command it should ideally ask for passphrase
+
+if you do not know your passphrase, then navigate to user on which you are logged in and then click on configure and then configure the passphrase and supply the same passphrase at the command line
+
+also you can conifgure SSH keys
+
+
+
