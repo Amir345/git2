@@ -1,0 +1,67 @@
+Basic configuration of jenkins can be done through manage jenkins and then selecting the option that says configure system
+
+Under configure system you will find an option of home directory which can change by changing the system variable for JENKINS_HOME and also changing the env variable in the config.xml file
+
+Home directory basically tells you where all the data related to the jenkins machine is getting stored
+
+this include the project data, that goes in workspace and other data such as plugins
+
+*************************************
+
+Workspace root directory :- is the directory where jenkins will store all the build information
+
+Build record root directory :- is where jenkins will store all the build records
+
+You can use Advance option to view and edit these
+
+************************************
+
+system message :- is the message that get displayed above the dashboard when you start your jenkins
+
+you can use safe html or plain text format for this
+
+Note :- You can change HTML to plain txt under configure global security in markup formatter
+
+************************************
+
+Executors :- no of executors is the number of parallel jobs this particular jenkins instance should run 
+
+so according to your CPU and memory you have to decide on # of parallel jobs
+
+************************************
+
+Labels and Usage :- Labels are basically used to define which job would run on the node or the master
+
+for example if i create a label xyz and configure the node in suc a way that all the jobs matching that label should be run on that node
+
+Then while configuring the job we hvae to make sure under general section we select the option "restrict where this project can be run"
+
+Once you have done that then provide the label to the job
+
+and according to the label the job would be processed by the respective which are configiured to run jobs according to that label
+
+*************************************
+
+Quiet Period :- Is the number of seconds that the jenkins instance should wait before triggering a job
+
+*************************************
+
+SCM checkout retry count :- if our jobs is configured in such a way that it polls SCM for any commit in order to trigger a build 
+
+SCM checkout retry count states that what is the maximum numnber of times it should try to connect in case it fails.
+
+*************************************
+
+Restrict project naming :- settings define on how the project can be named
+
+
+************************************
+
+you can also define some global properties that would be avaialble for all the jobs
+
+Such as  Environment variable
+
+additionaly we can configure jenkins URL and sys admin email address
+
+in shell executable you can define the path for your shell.exe program
+

@@ -1,0 +1,11 @@
+In order to use Jenkins in a way so that only defined users has certain rights on the projects or on the entire dashboard
+
+We have to provide role based access to users
+
+Under manage jenkins first we have to install the plugin (Role based authorization strategy)
+
+first we have to install it and then under manage and assign roles we have to first define those roles and then assign those roles to users
+
+Project roles can be assigned based on a pattern and applies only to that pattern
+
+wherein global provides the access on entire jenkins
