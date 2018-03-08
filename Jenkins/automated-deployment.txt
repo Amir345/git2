@@ -1,0 +1,34 @@
+Continuous delivery is the continuos deivery of the softwrare
+
+Steps involved in Continuous delivery
+
+Build
+Deploy
+Test
+Release
+
+And all these stages has jobs running and all these jobs are changed
+
+at the end of every job notification should be sent out which tells us about the status of the jobs
+
+*************************************
+
+A real world project
+
+Developer will develop and then commit their code to any VCS 
+
+We will have a build job running on jenkins that will poll SCM or it can be scheduled
+
+Outcome of the build job will be the project artifact which is generally a war or er file
+
+that we will deploy to the servers
+
+Next steps would include deploying it 
+
+which would be done by the deplooy jobs and the artifacts build will be deployed on different kinds of environment 
+
+Once the deployment jobs would be complted we will run different test jobs and then once test job is completed and is successfull we will deploy it on the production is environment
+
+************************************
+
+Automated deployment is the process of automating the deployment process in a continuous delivery system
