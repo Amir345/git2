@@ -1,0 +1,37 @@
+In order to install Jenkins on a debian ditsro 
+
+we have to first install Java (open JDK and JRE)
+
+post that you have to add jenkins repository and then through that repo we can install jenkins through the repo
+
+In order to install JDK and JRE
+
+#sudo apt-get install openjdk7-jre
+
+now we will install JDK
+
+sudo apt-get install openjdk7-jdk
+
+Now if the java is installed we can check if Java is installed by the below command
+
+java -version
+
+Once Java is installed we have to add the security key for jenkins apt-get repository to our system
+
+
+# Download the security key for the Jenkins repository & add it to the keychain
+wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+
+# Add the Jenkins sources to apt
+sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
+
+# Update the list of packages
+sudo apt-get update
+
+# Install Jenkins (will also install its dependencies, eg OpenJDK)
+sudo apt-get install jenkins
+
+Note :- When you install Jenkins it would automatically start it as a service and the folder path would be /var/lib/jenkins
+ 
+
+
