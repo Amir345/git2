@@ -1,0 +1,22 @@
+Integrate Jenkins with BitBucket Build Status API
+
+By this you can check the respective job status as per the commit
+
+in order to integrate it we would need oauth credentials
+
+under your profile for your bitbucket setings and then uder access management select oauth 
+
+In call back URL select Jenkins URL and once configured you will get a key and a secret key for it
+
+Now, we have to go to jenkins and install the bitbucket build status notifier and bitbucket oauth plugin on the jenkins
+
+Once done we have to add a post buildjob wheren we will select bit bucket notify build status
+
+and in order to send notifications to bitbucket jenkins needs to authenticate first
+
+so in to the advanced field provide the credentials
+
+In the username field enter the key value from oauth credentials from bitbucket
+
+and in password select the value for secret
+

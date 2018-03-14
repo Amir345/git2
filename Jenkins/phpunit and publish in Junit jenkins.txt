@@ -1,0 +1,36 @@
+Running PHP unit test with Jenkins
+
+In order to achieve this we have to have PHP unit installed on the machine and what php unit test does it would run the unit test on the code and then convert the result in a Junit .xml file and would be saved on the filesystes
+
+What Junit would do would pick up the result from the .xml file and would generate test result basis on the .xml file
+
+Note in order to run the test
+
+navigate to the directory and then give the command
+
+phpunit <name of the test case file>
+
+jenkins would get the code and test cases from the repo.
+
+In order to use php unit through jenkins one must have phpunit installed on the machine jenkins is running
+
+so basically
+
+#yum install phpunit
+
+also check if you have Junit plugin installed on the machine
+
+Job should first get the code from the repo through any trigger 
+
+and then in the build section
+
+Navigate to the directory where we have the test case
+
+and then run
+
+phpunit --log-junit <filename where the results should be logged> to reference the configuration file use -c <path to the reference configuration file>
+
+Note :- --log-junit would log the result in the j unit format
+
+Now in the post build action we can publish that in the junit format by utilising the results that was generated that was logged in junit format using phpunit
+

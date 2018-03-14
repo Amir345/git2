@@ -1,0 +1,15 @@
+In order to start a build after each commit in our repo in bitbucket
+
+
+In order to trigger build remotely we have to create a webhook from bitbucket repo
+
+and you would need a public IP address in order to achieve that
+
+and you have to make sure that you have bitbucket plugin is installed on jenkins
+
+this plugin would identify that jenkins is listening to bitbucket
+
+In order to create webhook you have to go into settings in bitbucket and then provide the URL for your jenkins and then append 
+
+"bitbucket-hook"
+

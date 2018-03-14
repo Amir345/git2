@@ -1,0 +1,22 @@
+How we can send emails from jenkins for the purpose of emaail notifications
+
+in order to do that we have to go to manage jenkins, configure system and then navigate to email notifications
+
+there we have to provide the SMTP mail server information.
+
+and then select Use SMTP authentication
+
+Once done you have to provide the email address and password from which the notification would be sent out
+
+and we can use this in conjunction with SSL
+
+In case there is any issues check the  email address from which emails are going to be sent out and make sure that less secure apps are allowed
+
+************************************
+
+There are some custom plugins available
+
+*Notification plugin
+*extreme notification plugin (webhook) it is basically an HTTP post that on any event this HTTP post should be sent to any particular URL
+
+************************************

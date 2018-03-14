@@ -32,3 +32,31 @@ Once the deployment jobs would be complted we will run different test jobs and t
 ************************************
 
 Automated deployment is the process of automating the deployment process in a continuous delivery system
+
+
+***********************************
+
+In order to deploy software to any server we have to have deploy plugin to be installed on the machine
+
+It takes war/ear file and deploys that to a running remote application server at the end of each build
+
+supported containers are
+
+Tomcat,Jboss,Glassfish
+
+In order to deploy something we have to deploy war/ear to container we have to go through post build actions
+
+Note :- In case you are deploying it on tomcat you have to edit the file
+
+tomcat-users.xml file in the conf folder
+
+add the user and provide the manager script role
+
+and then restart the tomcat server
+
+Manager username and password in the jenkins jobs would be the details of the user that is added to the tomcat-users file with manager script role
+
+***********************************
+
+In case you use jenkins and tomcat on the same machine use different ports
+
