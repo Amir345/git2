@@ -1,0 +1,9 @@
+In order to integrate an FTP server through jenkins we have to connect to the FTP server using a username and password
+
+technically what we can achieve through this process is
+
+Whenever there is a commit in the git or bitbucket repo of our code our job can pull the code to the workspace and then transfer that over to the webserver <html> directory using FTP on that server
+
+we can use git-ftp client to achieve this
+
+git-ftp for the first run should use git init --user <FTP_USERNAME> --passwd <FTP_PASSWORD> and then git-ftp push command for subsequent run
