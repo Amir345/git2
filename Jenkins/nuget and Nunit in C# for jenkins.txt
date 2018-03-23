@@ -6,5 +6,9 @@ Nuget is a tool which can be used to add reference to your project
 
 Where in Nunit is used for eexcuting testing
 
+Jenkins has no idea about Nuget or Nunit and we have to inform jenkins on what it does
+
+
+
 
 
