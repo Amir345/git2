@@ -1,0 +1,10 @@
+for .net project jenkins does not have anything out of the box
+
+In jave we have pom.xml where in all the references for the maven project are available in pom.xml file
+
+Nuget is a tool which can be used to add reference to your project 
+
+Where in Nunit is used for eexcuting testing
+
+
+
