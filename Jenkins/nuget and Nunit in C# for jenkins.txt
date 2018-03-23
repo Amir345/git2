@@ -9,6 +9,28 @@ Where in Nunit is used for eexcuting testing
 Jenkins has no idea about Nuget or Nunit and we have to inform jenkins on what it does
 
 
+In C# project in jenkins if you want to test something the general syntax using Nunit is
+
+nunit <dll file>
+
+but before testing one has to compile the project
+
+In order to compile you have to have msbuild plugin installed on your jenkins machine and once you have the plugin you must have msbuild installed on your machine
+
+that can be done via chocolatey package manager
+
+Once done configure jenkins to use this via the global tool configuration 
+
+also while configuring the msbuild you can specify the buildfile which is the solution file
+
+
+
+
+
+
+
+
+
 
 
 
