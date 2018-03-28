@@ -53,7 +53,71 @@ this docker toolbox helps in setting up the docker environment on windows or mac
 
 Docker toolbox installs docker client, compose (MAC Only), kitematic, virtual box and machine
 
+
+Docker daemon takes care of images and containers
+
+
 ******************************************************************************************************************************************************************************
+
+Docker Images and containers
+
+Images :- can be related to the exe file and these are the building blocks for docker containers
+
+Images are built by docker file using the build command on it
+
+These are read only template and is used to create containers using the run command
+
+containers :- These are instances of images and these are ready applications that are created using the images
+
+containers hold the entire package that is needed to run the application and it is an isolated application platform
+
+
+**************************************************************************************
+
+Docker registery :- It's the repo where you save your docker images
+
+repo can be public or private (Local to your machine), docker hub is docker very own cloud repo similar to github
+
+******************************************************************************************************************************************************************************
+
+commands for docker
+
+Pull an image
+
+# docker pull <image:tag>
+or
+# docker pull <image id>
+
+Run an image
+
+# docker run <image:tag>
+or
+# docker run <image id>
+
+List all docker images
+
+# docker images
+
+List all running containers
+
+# docker ps
+
+List all container including the one that has been stopped
+
+# docker ps -a
+
+**************************************************************************************
+
+How to build docker images
+
+docker uses UFS and hence images are built in layers
+
+
+
+
+
+
+
 
 
 
