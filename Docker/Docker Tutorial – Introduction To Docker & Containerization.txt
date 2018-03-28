@@ -1,0 +1,73 @@
+Introduction to Docker
+
+Docker is a virtualization technology wherein your apps binaries and libraries and their dependencies are combined together in a container and can be shipped to run on different machines.
+
+To run containers you don't have to allocate any RAM as compared to traditional VM
+
+Docker is gaining popularity specially with complex application structure wherein 
+
+Complex application is broken down into smaller segments generally referred to as microservices and then these micro services can be coded in forms of containers
+
+containers are lightweight and uses the host OS (kernel).
+
+These containers use containarization to be enabled on the host os whic is not native to the host OS
+
+Hence a software is needed and docker solves the purpose over here
+
+Docker is one such tool that truly lives up to its promise of Build, Ship and Run.
+
+
+For example: Lets consider a linux based application which has been written both in Ruby and Python. This application requires a specific version of linux, Ruby and Python. In order to avoid any version conflicts on user’s end, a linux docker container can be  created with the required versions of Ruby and Python installed along with the application. Now the end users can use the application easily by running this container without worrying about the dependencies or any version conflicts. 
+
+
+Containerization is the technique of bringing virtualization to the operating system level. While Virtualization brings abstraction to the hardware, Containerization brings abstraction to the operating system.
+
+Containers run in an isolation environment so that essentially means that they do not interfer with one another while they run however containers are easy to integrate.
+
+Containers only contain application specific libraries which are separate for each container and they are faster and do not waste any resources.
+
+While Virtualization brings abstraction to the hardware, containeraziation brings abstraction to the OS
+
+binaries and libraries are on the host kernel which makes booting time faster for containers as compared to VM
+
+
+******************************************************************************************************************************************************************************
+
+Docker is a containerazation platform which packages your application code with it's dependencies together in the form of containers which have process level isolation
+
+This also ensures that the working computing environment remains the same across all the stages in SDLC
+
+Docker engine is the heart of docker it works like a client server architecture
+
+which uses a server which is a type of long running program called a daemon process and the command line interface is the client
+
+client interacts with the server through REST API with a combination of socket Io and the TCP/IP.
+
+In a linux OS docker client is accessed via the terminal and the docker host which runs the docker daemon
+
+We build our docker images and run our docker containers by passing command from CLI to the docker daemon
+
+In Windows/MAC there is additional docker toolbox component inside the docker host
+
+this docker toolbox helps in setting up the docker environment on windows or mac system
+
+Docker toolbox installs docker client, compose (MAC Only), kitematic, virtual box and machine
+
+******************************************************************************************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
