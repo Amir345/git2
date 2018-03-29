@@ -24,7 +24,9 @@ Once done configure jenkins to use this via the global tool configuration
 also while configuring the msbuild you can specify the buildfile which is the solution file
 
 
+You also need nuget for reference to restore and then use nunit
 
+You can use this in build steps using the .exe file and run the relevant command using batch script and that would work
 
 
 

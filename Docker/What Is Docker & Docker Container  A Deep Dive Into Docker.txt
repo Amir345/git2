@@ -1,0 +1,114 @@
+There were many problems before docker one of them was of different computing environment in dev and productions
+
+In such scenarion when a developer developed a code it used to work on his machine while on the production it creates issue
+
+with the help of docker we can create same environment across all stages in SDLC
+
+*************************************
+
+A very large monolithic appplication can be broken down into smaller segments or services which are referred to as microservices
+
+or
+
+microservices can be referred to as a small processes which communicate with each other over a network to fulfill one particular goal
+
+the approach behind microservices is that if one of the services fail most of the application would be up and running
+
+there are certain application which are easier to build and maintain if broken down into smaller services
+
+Suppose if i want to use a latest stack across a service we can easily do that because the dependency concerns would be very less when compared to as a whole application
+
+*************************************
+
+One way to implement microservices is to create one VM for one microservice but as already discussed that VM is not a good way to use our resources
+
+*************************************
+
+Docker containers can be used through the entire SDLC lifecycle to provide the same computing environment
+
+docker container does not use guest OS it runs on the host OS
+
+Docker engine runs on the host OS and is used to run and create containers
+the application or microservices would run on these containers
+
+*************************************
+
+One of the ways to use docker in devops is
+
+Developer would write the code that defines the application requirement and their dependencies in an easy to writeable docker file
+
+dockerfile are user to create docker image and then docker container can be created from these images
+
+These images can be stored in the local machine or can be stored in the docker hub
+
+Through the docker hub this image can be pulled by staging or testing team and containers can be created by them  to test the same application and this way the entire computing environment remains the same
+
+NOTE :- We can also create an image by running a base image as a container and then applying the steps in that container whatever we want to do and then commit it to the local repo and then provide a tag to it
+
+once it is done we can create a docker container of that image and we can push that image to docker hub to be used by different teams
+
+
+*************************************
+Docker images are huge in size and in order to save bandwidth we can use the below workflow
+the other way around is a Developer would write the code that defines the application requirement and their dependencies in an easy to writeable docker file
+
+and then this docker file would be pushed to git repo
+
+from git a jenkins job can pull down this docker file create an image out of docker file and then run a container on all sorts of environment
+
+
+*************************************
+
+UCP Web UI from DDC is used to deploy on various host using images from docker trusted registery
+
+Hence UCP web UI provides a single places to the ops team to manage all the infrastructure
+
+*************************************
+
+Role based access control within DDC helps with security
+
+*************************************
+
+It is also possible that more than one docker image is required to create a docker container
+
+*************************************
+
+Docker compose is a way to run multiple containers in one go
+
+if we have multiple applications on multiple containers and all those containers are linked together 
+
+if we want to run all the containers through one single command by running
+
+# docker -compose up
+
+If we define multiple images in a .yml file that is referred to as a docker compose file
+
+You can run all the container with the docker -compose up command
+
+NOTE :- In order to use docker compose one must install it and the dependency to it python pip hence install python pip first and then install docker compose
+
+In a docker.yml file we have to define containers that we need to run from images
+
+images are defined through a command
+
+image: <name of the image>
+
+in order to link the container with another container
+
+links:
+	- <name of the container>
+
+In order to provide ports section
+
+ports:
+	- Hostport:containerport
+
+In order to define environment variable
+
+environment:
+	ENV_VARIABLE: value to environment variable
+
+****************************
+
+
+
