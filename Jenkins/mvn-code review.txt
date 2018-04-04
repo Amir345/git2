@@ -1,0 +1,3 @@
+In order to review the code you can use metrics profile of maven
+
+-P metrics pmd:pmd

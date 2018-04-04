@@ -1,0 +1,6 @@
+Jenkins can be used to connect to private repo in github and bitbucket
+
+all you have to do is to create a ssh-keypair on the server where jenkins is there and then navigate to the respective repo and upload the public key over there
+
+you can save the private key in the credential section and can use it while configuring the job
+

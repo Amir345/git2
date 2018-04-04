@@ -1,0 +1,7 @@
+In order to monitor the disk usage for jenkins we need to install that plugin 
+
+once installed you can check the disk usage for jobs and workspaces
+
+You can also configure your jenkins to display your disk usage as per your current project
+
+all you have to do is enabled the project wise disk usage under manage jenkins and configure system

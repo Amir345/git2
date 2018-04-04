@@ -1,0 +1,19 @@
+you can also integrate jenkins with slack and github with their respective plugin
+
+for slack it is slack notifier plugin
+
+Once installed you will need a token id which you can go to your slack workspace
+
+Create a new channel and integarate that with jenkins
+
+That will give you the token that is needed to configure
+
+Once done you can add that token as  a secret text and then the job can be configured to send post build notification to slack channel
+
+And the same can be done via github
+
+we can create a webhook from github to start a job
+
+We need git integration plugin to be installed on our machine and once done you can use this plugin to build on every commit
+
+in the webhook URL append it with "github-webhook"

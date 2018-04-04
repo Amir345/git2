@@ -1,0 +1,108 @@
+Docker container is the best solution for microservice kind of architecture
+
+If you have a microservice architecture you can create one docker container for each of the service and make those docker containers talk to each other in order to complete the end goal
+
+
+The idea behind microservices is that certain types of applications become easier to build and maintain when they are broken down into smaller, composable pieces which work together. Each component is developed separately, and the application is then simply the sum of its constituent components.
+
+
+Microservice architecture has lots of benefits
+
+Even if one of your microservice fails, your entire application is largely unaffeced.
+It is easier to manage
+
+
+You can solve the purpose of  microservice using VM but hosting multiple VM and with such an overhead in VM it is not going to help
+
+als we have to write long custom scripts in order to configure the environment 
+
+Docker is a tool designed to make it easier to create, deploy and run applications by using containers.
+
+You can create Docker Containers, these containers will contain all the binaries and libraries required for your application or microservice in my case. So your application is present in a container, or you have containerized your application. Now, that same container can be used in the Test and Prod environment
+
+Docker containers are light-weight as compared to VM as it uses the underlying host kernel
+
+UCP :- Helps in managing whole cluster from a single place. Services are deployed using UCP web UI, using Docker images that are stored in DTR (Docker Trusted Registry).
+
+UCP and DTR integrates with their LDAP server to quickly provision access to their applications.
+
+you can also use Docker compose to run a multi container application on the same host
+
+
+Docker Compose: It is a tool for defining and running multi-container Docker applications. With Docker Compose, you can use a Compose file to configure your application’s services. Then, using a single command, you can create and start all the services from your configuration.
+
+this compose file has the instructions that links all the containers with each other and then once you run this up this will run all the containers
+
+either this can be done from the docker file or through the image
+
+in case you are using a docker file you have to build them in the compose file
+
+wherein if you are using docker images you will skip the build command in the compose file 
+
+Suppose you have multiple applications in various containers and all those containers are linked together. So, you don’t want to execute each of those containers one by one. But, you want to run those containers with a single command. That’s where Docker Compose comes in to the picture. With it you can run multiple applications in various containers with a single command. 
+
+#docker-compose up
+
+Docker compose file is a YAML file
+
+
+In order to use docker compose you must firs install it
+
+This can be done by installing 
+
+python-pip first
+
+# sudo apt-get install python-pip
+
+# sudo apt-get install docker-compose
+
+Now create the dockercompose file
+
+give it docker-compose and select .yml as the extension
+
+********************************************************
+
+wordpress:
+ 
+image: wordpress
+ 
+links:
+ 
+- wordpress_db:mysql
+ 
+ports:
+ 
+- 8080:80
+ 
+wordpress_db:
+ 
+image: mariadb
+ 
+environment:
+ 
+MYSQL_ROOT_PASSWORD: amir
+ 
+phpmyadmin:
+ 
+image: corbinu/docker-phpmyadmin
+ 
+links:
+ 
+- wordpress_db:mysql
+ 
+ports:
+ 
+- 8181:80
+ 
+environment:
+ 
+MYSQL_USERNAME: tester
+ 
+MYSQL_ROOT_PASSWORD: amir
+
+********************************************************
+
+
+
+
+
