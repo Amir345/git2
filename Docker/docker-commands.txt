@@ -1,0 +1,104 @@
+Top 15 docker commands
+
+#docker -version
+
+gives out the version of the docker installed
+
+#docker pull
+
+pull an image from the docker hub
+
+#docker run
+
+to run a container from an image
+
+#docker ps
+
+show all running containers
+
+#docker ps -a
+
+show all containers including exited containers
+
+#docker exec
+
+pass on a command to a running container
+
+#docker stop
+
+Stop a container gracefully
+
+#docker kill
+
+Kill a running container without giving time for proper shutdown
+
+#docker commit
+
+commit changes either to the local repo or to the dcoker repo
+in other words you basically create a new image by making some changes on a running container
+
+#docker login 
+
+Used to login at docker hub or it can be any host where you have docker images
+
+#docker push
+
+push the images to the docker hub or any private repo
+
+#docker images
+
+list all the images that are available locally to the host
+
+#docker rm
+
+remove containers (stopped)
+
+#docker rmi
+
+remove images 
+
+#docker build
+
+build an image from a docker file
+
+
+#docker start
+
+start a stopped container in detached mode
+
+#docker attach
+
+attach to a running container
+
+-it :- tag is used for interactive terminal
+
+-d tag is used for daemon
+
+-v :- used to map volumes
+
+-p is used for ports
+
+
+One line command to stop/remove all containers
+
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+
+
+In order to give name to a container we use (--name) tag
+
+
+To remove any image forcefully 
+
+#docker rmi -f <name of the image>
+
+same flag to remove the container forcefully without stopping it
+
+#docker rm -f <container id or the name of the container>
+
+in case you are inside a container and you want to come out of it without closing the container 
+
+press control+p+q
+
+While building the image in case you want to specify the file we have to use (-f) flag
+

@@ -1,0 +1,46 @@
+Docker is a tool for running application in an isolated environment
+
+Advantages of docker
+
+same environment :- your apps run in exactly the same environment because apart from binaries and libraries you bundle up all the dependencies in a container
+
+A container is not a VM however docker brings Virtualization to a next level as with traditional we have guest OS on host OS where in with containers they use the host machine kernel
+
+as all linux distro are build on the same kernel
+
+it takes less RAM and less disk space
+
+Container is created from an image
+
+and images are created from docker file 
+
+list of steps that need to run to build an image
+
+in our docker file we start from an image. 
+
+FROM --> to tell an image
+COPY--> to copy the content from your host machine to the docker container
+EXPOSE--> exposing the container port
+
+IMP:- in case the code changes you have to rebuild the image and then run the container to check how the code is running
+ 
+NOTE :- once the image is created we can run the container, now if we change any thing in the file that is being used by docker container it will not update the docker container
+
+Hence we have to use volumes
+volumes are of two types
+
+one to persist and share data between containers
+
+second is to share the data between host machine and the docker container
+
+this is done  by mounting a folder on the local host as a volume for a container
+
+this is done by using -v flag
+
+# docker run -p 80:80 -v /Users/amir/Desktop/Src:/var/www/html <name of the image>
+
+before you deploy the last code that looks good you have to rebuild the image and then share that with other environment
+
+NOTE :- Volumes gives the container to see the file on the host filesystem they do not change the image 
+
+container would only stop if the process completes or is killed due to some unexpected  Hence try to create one process per container don't tightly bind multiple process in one container
