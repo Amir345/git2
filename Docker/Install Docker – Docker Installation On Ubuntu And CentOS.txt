@@ -1,0 +1,31 @@
+Installing docker is just a piece of cake, you just need to run few commands and you’re done!
+
+Docker installation On Ubuntu
+
+# sudo apt-get update  (Update the packages)
+
+
+before installing docker, I need to install the recommended packages. For that, just type in the below command:
+
+# sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual -y
+
+Once we are done with pre requisites we have to install the docker engine
+
+# sudo apt-get install docker-engine -y
+
+Once the package is installed we have to start the service
+
+# sudo service docker start
+
+Docker is successfully installed on the machine now you can pull images from docker hub, create containers from the images also you can build your custom images through docker file
+
+***************************************************************************************
+
+Install Docker On CentOS
+
+# yum install update -y
+# curl -fsSL https://get.docker.com/ |sh --->this script add the docker repo and installs docker
+
+# service docker start --> start docker service
+
+ 
