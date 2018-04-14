@@ -44,3 +44,18 @@ before you deploy the last code that looks good you have to rebuild the image an
 NOTE :- Volumes gives the container to see the file on the host filesystem they do not change the image 
 
 container would only stop if the process completes or is killed due to some unexpected  Hence try to create one process per container don't tightly bind multiple process in one container
+
+
+NOTE :- Docker daemon always run as a service
+
+Also there is a very light weight image named as busybox and when you run that image and pass any command on that it would run that command by creating a container
+
+once the command is executed it would kill the container
+
+Container are light weight because most of the packages are not installed on it
+
+dpkg -l | wc -l --> this command gives the # of packages installed
+
+
+
+

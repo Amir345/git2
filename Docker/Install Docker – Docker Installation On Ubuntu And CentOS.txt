@@ -19,6 +19,16 @@ Once the package is installed we have to start the service
 
 Docker is successfully installed on the machine now you can pull images from docker hub, create containers from the images also you can build your custom images through docker file
 
+NOTE :- Docker user is equivalent to root user hence in order to add up to the security
+
+Create a group named as docker and add your users to that group
+
+# groupadd <docker>
+# usermod -aG docker <$nameoftheuser> 
+
+In order to add the current user to the group
+
+sudo gpasswd -a $USER docker
 ***************************************************************************************
 
 Install Docker On CentOS

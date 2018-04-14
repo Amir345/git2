@@ -1,0 +1,13 @@
+Whatever you do inside a container is not saved until you commit those changes
+
+For example
+
+if you have an image and you run a container based on that image
+
+and you install couple of packages in it and it works
+
+however if you exit the container and run the container again from the images the changes that we made is not there, because that is another instance for the container
+
+So in order for the changes to persist you have to commit those changes as a new image
+
+
